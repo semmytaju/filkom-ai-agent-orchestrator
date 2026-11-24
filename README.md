@@ -6,6 +6,18 @@ An AI-powered Multi-Agent Orchestration Platform for the **faculty**, combining 
 
 ---
 
+## Demo 1
+
+![Preview Simulasi Robot](images/review1.png)
+
+---
+
+## Demo 2
+
+![Preview Simulasi Robot](images/review2.png)
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
