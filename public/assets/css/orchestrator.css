@@ -1,0 +1,862 @@
+:root {
+    --orch-bg: #f1f5f9;
+    --orch-surface: #ffffff;
+    --orch-surface-alt: #f8fafc;
+    --orch-navy: #0a192f;
+    --orch-navy-mid: #112240;
+    --orch-navy-soft: #1e3a5f;
+    --orch-cyan: #0284c7;
+    --orch-cyan-bright: #38bdf8;
+    --orch-border: #e2e8f0;
+    --orch-border-strong: #cbd5e1;
+    --orch-text: #0f172a;
+    --orch-muted: #64748b;
+    --orch-success: #059669;
+    --orch-warn: #d97706;
+    --orch-danger: #dc2626;
+    --orch-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.orch-body {
+    margin: 0;
+    background: var(--orch-bg);
+    color: var(--orch-text);
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    min-height: 100vh;
+}
+
+.orch-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.orch-sidebar {
+    width: 256px;
+    flex-shrink: 0;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(56, 189, 248, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 88% 92%, rgba(99, 102, 241, 0.16) 0%, transparent 45%),
+        linear-gradient(180deg, #061022 0%, #0b1a36 52%, #071327 100%);
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1030;
+    border-right: 1px solid rgba(56, 189, 248, 0.24);
+    box-shadow: 6px 0 28px rgba(4, 12, 28, 0.34);
+    transition: width 0.22s ease, transform 0.22s ease;
+}
+
+.orch-brand {
+    padding: 14px 14px 12px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.12), rgba(99, 102, 241, 0.06));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.orch-brand-meta {
+    min-width: 0;
+    flex: 1;
+}
+
+.orch-side-collapse-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.30);
+    background: rgba(14, 165, 233, 0.12);
+    color: #bae6fd;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+}
+
+.orch-side-collapse-btn:hover {
+    background: rgba(56, 189, 248, 0.28);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.orch-side-telemetry {
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+    background: linear-gradient(180deg, rgba(8, 22, 46, 0.72), rgba(6, 16, 34, 0.50));
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.orch-side-telemetry-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.orch-side-active-view {
+    font-size: 0.71rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #bae6fd;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.orch-side-active-view i {
+    color: #38bdf8;
+}
+
+.orch-brand-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 55%, #6366f1 100%);
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(186, 230, 253, 0.38);
+    flex-shrink: 0;
+}
+
+.orch-brand-title {
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #f8fafc;
+    line-height: 1.2;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.orch-brand-sub {
+    font-size: 0.67rem;
+    color: #7dd3fc;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.orch-nav-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+}
+
+.orch-nav-group {
+    font-size: 0.63rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(125, 211, 252, 0.62);
+    font-weight: 700;
+    padding: 12px 12px 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.orch-nav-group::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.22), transparent);
+}
+
+.orch-nav-btn {
+    position: relative;
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    margin-bottom: 3px;
+}
+
+.orch-nav-btn:hover {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.24);
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.orch-nav-btn.active {
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.26) 0%, rgba(37, 99, 235, 0.20) 100%);
+    border-color: rgba(56, 189, 248, 0.48);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.orch-nav-btn.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 0 4px 4px 0;
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+.orch-nav-btn i {
+    font-size: 0.98rem;
+    width: 19px;
+    text-align: center;
+    color: #7dd3fc;
+}
+
+.orch-nav-btn.active i {
+    color: #38bdf8;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.65));
+}
+
+.orch-nav-pill {
+    margin-left: auto;
+    font-size: 0.67rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.22);
+    border: 1px solid rgba(125, 211, 252, 0.35);
+    color: #e0f2fe;
+}
+
+.orch-sidebar-footer {
+    padding: 12px 14px;
+    border-top: 1px solid rgba(56, 189, 248, 0.16);
+    background: linear-gradient(180deg, rgba(6, 16, 34, 0.45), rgba(4, 11, 24, 0.85));
+}
+
+.orch-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.orch-inline-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 16px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #071328 0%, #0e2447 55%, #091a36 100%);
+    border: 1px solid rgba(56, 189, 248, 0.30);
+    box-shadow: 0 8px 22px rgba(6, 16, 34, 0.16);
+}
+
+.orch-content.is-stage .orch-inline-head {
+    display: none;
+}
+
+.orch-inline-head-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.orch-page-title {
+    font-size: 0.96rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #f8fafc;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.28);
+}
+
+.orch-inline-head-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.orch-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 0.69rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(56, 189, 248, 0.30);
+    background: rgba(15, 35, 68, 0.78);
+    color: #e0f2fe;
+    white-space: nowrap;
+}
+
+.orch-chip i {
+    color: #38bdf8 !important;
+}
+
+.orch-chip-live {
+    background: rgba(16, 185, 129, 0.18);
+    border-color: rgba(52, 211, 153, 0.48);
+    color: #6ee7b7;
+}
+
+.orch-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 8px #34d399;
+    display: inline-block;
+}
+
+.orch-dot.pulse {
+    animation: orchPulse 1.6s infinite;
+}
+
+@keyframes orchPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(1.3); }
+}
+
+.orch-content {
+    padding: 16px 20px 24px;
+    flex: 1;
+}
+
+.orch-content.is-stage {
+    padding: 0;
+    background: #061022;
+}
+
+.orch-sidebar.collapsed {
+    width: 68px;
+}
+
+.orch-sidebar.collapsed .orch-brand {
+    flex-direction: column;
+    padding: 12px 8px;
+    gap: 8px;
+}
+
+.orch-sidebar.collapsed .orch-brand-meta,
+.orch-sidebar.collapsed .orch-side-telemetry,
+.orch-sidebar.collapsed .orch-nav-group,
+.orch-sidebar.collapsed .orch-nav-pill,
+.orch-sidebar.collapsed .orch-sidebar-footer .small,
+.orch-sidebar.collapsed .orch-sidebar-footer .badge {
+    display: none;
+}
+
+.orch-sidebar.collapsed .orch-nav-btn {
+    justify-content: center;
+    padding: 10px 0;
+    font-size: 0;
+    gap: 0;
+}
+
+.orch-sidebar.collapsed .orch-nav-btn i {
+    font-size: 1.15rem;
+    width: auto;
+}
+
+.orch-section {
+    display: none;
+}
+
+.orch-section.active {
+    display: block;
+}
+
+.orch-command-grid {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.orch-stage-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 35%, #0e203d 0%, #091529 58%, #060e1d 100%);
+    border: 0;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+#orchCommandCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+}
+
+#orchCommandCanvas:active {
+    cursor: grabbing;
+}
+
+.orch-stage-hud-top {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    gap: 8px;
+    z-index: 16;
+}
+
+.orch-stage-hud-top > * {
+    pointer-events: auto;
+}
+
+.orch-hud-glass {
+    background: linear-gradient(135deg, rgba(7, 19, 40, 0.84), rgba(14, 34, 68, 0.78));
+    backdrop-filter: blur(12px);
+    color: #f8fafc;
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 6px 20px rgba(4, 11, 24, 0.36);
+}
+
+.orch-hud-title-pill {
+    border-color: rgba(56, 189, 248, 0.52);
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.24), rgba(15, 23, 42, 0.86));
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #e0f2fe;
+}
+
+.orch-hud-console-btn {
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+    color: #ffffff;
+    border: 1px solid rgba(186, 230, 253, 0.55);
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.45);
+    font-weight: 700;
+    font-size: 0.74rem;
+    padding: 5px 14px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.orch-hud-console-btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.65);
+}
+
+.orch-stage-hud-bottom {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    gap: 12px;
+    z-index: 15;
+}
+
+.orch-stage-hud-bottom > * {
+    pointer-events: auto;
+}
+
+.orch-console-card {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: 410px;
+    max-width: calc(100% - 24px);
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    border: 1px solid #bae6fd;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 16px 42px rgba(10, 25, 47, 0.22);
+    transform: translateX(calc(100% + 28px));
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orch-console-card.open {
+    transform: translateX(0);
+}
+
+.orch-console-head {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--orch-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--orch-surface-alt);
+}
+
+.orch-agent-strip {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--orch-border);
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    background: #ffffff;
+    scrollbar-width: thin;
+}
+
+.orch-agent-pill {
+    border: 1px solid var(--orch-border);
+    background: #f8fafc;
+    color: var(--orch-navy);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.14s ease;
+}
+
+.orch-agent-pill:hover {
+    border-color: var(--orch-cyan);
+    background: #f0f9ff;
+}
+
+.orch-agent-pill.active {
+    background: var(--orch-navy);
+    color: #ffffff;
+    border-color: var(--orch-navy);
+}
+
+.orch-agent-pill.busy {
+    border-color: var(--orch-cyan-bright);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+.orch-chat-feed {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fafcff;
+}
+
+.orch-msg {
+    max-width: 92%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.orch-msg.user {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.orch-msg.assistant {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.orch-msg-bubble {
+    padding: 10px 13px;
+    border-radius: 12px;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.orch-msg.user .orch-msg-bubble {
+    background: linear-gradient(135deg, var(--orch-navy), var(--orch-navy-soft));
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.orch-msg.assistant .orch-msg-bubble {
+    background: #ffffff;
+    color: var(--orch-text);
+    border: 1px solid var(--orch-border);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.orch-msg-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    color: var(--orch-muted);
+}
+
+.orch-trace-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-weight: 600;
+    font-size: 0.69rem;
+}
+
+.orch-cite-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: #ede9fe;
+    color: #5b21b6;
+    font-weight: 600;
+    font-size: 0.69rem;
+}
+
+.orch-composer {
+    padding: 10px 12px;
+    border-top: 1px solid var(--orch-border);
+    background: #ffffff;
+}
+
+.orch-quick-prompts {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    margin-bottom: 8px;
+}
+
+.orch-qp-btn {
+    border: 1px solid var(--orch-border);
+    background: #f8fafc;
+    color: var(--orch-navy-soft);
+    border-radius: 8px;
+    padding: 3px 9px;
+    font-size: 0.71rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.orch-qp-btn:hover {
+    border-color: var(--orch-cyan);
+    background: #f0f9ff;
+}
+
+.orch-card {
+    background: var(--orch-surface);
+    border: 1px solid var(--orch-border);
+    border-radius: var(--orch-radius);
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+}
+
+.orch-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.orch-kpi-card {
+    background: var(--orch-surface);
+    border: 1px solid var(--orch-border);
+    border-radius: var(--orch-radius);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orch-kpi-val {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--orch-navy);
+    line-height: 1.15;
+}
+
+.orch-kpi-lbl {
+    font-size: 0.73rem;
+    color: var(--orch-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+}
+
+.orch-kpi-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #e0f2fe;
+    color: var(--orch-cyan);
+    display: grid;
+    place-items: center;
+    font-size: 1.15rem;
+}
+
+.orch-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--orch-border);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.orch-table {
+    width: 100%;
+    margin-bottom: 0;
+    font-size: 0.82rem;
+}
+
+.orch-table thead th {
+    background: #f8fafc;
+    color: var(--orch-navy);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--orch-border);
+    padding: 10px 12px;
+    white-space: nowrap;
+}
+
+.orch-table tbody td {
+    padding: 9px 12px;
+    vertical-align: middle;
+    border-color: #f1f5f9;
+}
+
+.orch-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.orch-badge-ok { background: #ecfdf5; color: #047857; }
+.orch-badge-warn { background: #fffbeb; color: #b45309; }
+.orch-badge-err { background: #fef2f2; color: #b91c1c; }
+.orch-badge-info { background: #eff6ff; color: #1d4ed8; }
+.orch-badge-muted { background: #f1f5f9; color: #475569; }
+
+.orch-toast-box {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    z-index: 2050;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.orch-toast {
+    background: var(--orch-navy);
+    color: #ffffff;
+    border-left: 4px solid var(--orch-cyan-bright);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    box-shadow: 0 8px 24px rgba(10, 25, 47, 0.25);
+    max-width: 340px;
+}
+
+.orch-toast.err {
+    border-left-color: #ef4444;
+}
+
+.orch-timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.8rem;
+}
+
+.orch-timeline-item:last-child {
+    border-bottom: 0;
+}
+
+.orch-mobile-toggle {
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    .orch-command-grid {
+        height: 100vh;
+        min-height: 520px;
+    }
+}
+
+@media (max-width: 860px) {
+    .orch-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+    }
+    .orch-sidebar.open {
+        transform: translateX(0);
+    }
+    .orch-mobile-toggle {
+        display: inline-flex;
+    }
+}
